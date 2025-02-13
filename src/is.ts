@@ -71,11 +71,16 @@ export function isNullOrUndef(val: unknown): val is null | undefined {
 }
 
 export function isNullOrUndefOrEmpty(val: unknown): boolean {
-  if (isNullOrUndef(val)) return true
-  if (isString(val)) return val.trim().length === 0
-  if (isArray(val)) return val.length === 0
-  if (isMap(val) || isSet(val)) return val.size === 0
-  if (isObject(val)) return Object.keys(val).length === 0
+  if (isNullOrUndef(val))
+    return true
+  if (isString(val))
+    return val.trim().length === 0
+  if (isArray(val))
+    return val.length === 0
+  if (isMap(val) || isSet(val))
+    return val.size === 0
+  if (isObject(val))
+    return Object.keys(val).length === 0
   return false
 }
 
@@ -120,19 +125,19 @@ export function isArrayBuffer(val: unknown): val is ArrayBuffer {
 }
 
 export function isBuffer(val: unknown): val is Buffer {
-  return val !== null && 
-         typeof val === 'object' && 
-         isFunction((val as any).write) && 
-         isFunction((val as any).fill) && 
-         isFunction((val as any).toString)
+  return val !== null
+    && typeof val === 'object'
+    && isFunction((val as any).write)
+    && isFunction((val as any).fill)
+    && isFunction((val as any).toString)
 }
 
 export function isPrimitive(val: unknown): val is string | number | boolean | symbol {
   return (
-    isString(val) ||
-    isNumber(val) ||
-    isBoolean(val) ||
-    isSymbol(val)
+    isString(val)
+    || isNumber(val)
+    || isBoolean(val)
+    || isSymbol(val)
   )
 }
 
@@ -157,12 +162,14 @@ export function isNegative(val: unknown): val is number {
 }
 
 export function isURL(val: unknown): boolean {
-  if (!isString(val)) return false
+  if (!isString(val))
+    return false
   try {
     // eslint-disable-next-line no-new
     new URL(val)
     return true
-  } catch {
+  }
+  catch {
     return false
   }
 }

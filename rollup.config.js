@@ -1,9 +1,9 @@
 import pluginAlias from '@rollup/plugin-alias'
-import pluginCjs from '@rollup/plugin-commonjs';
-import pluginJson from '@rollup/plugin-json';
-import pluginNodeResolve from '@rollup/plugin-node-resolve';
-import pluginDts from 'rollup-plugin-dts';
-import pluginEsbuild from 'rollup-plugin-esbuild';
+import pluginCjs from '@rollup/plugin-commonjs'
+import pluginJson from '@rollup/plugin-json'
+import pluginNodeResolve from '@rollup/plugin-node-resolve'
+import pluginDts from 'rollup-plugin-dts'
+import pluginEsbuild from 'rollup-plugin-esbuild'
 
 const entries = [
   'src/index.ts',

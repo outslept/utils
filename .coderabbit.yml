@@ -42,6 +42,6 @@ reviews:
 
 knowledge_base:
   learnings:
-    scope: auto 
+    scope: auto
   pull_requests:
     scope: auto

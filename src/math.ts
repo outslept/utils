@@ -46,6 +46,9 @@ export function degToRad(degrees: number): number {
 }
 
 export function approxEquals(a: number, b: number, epsilon = 1e-6): boolean {
+  if (!Number.isFinite(a) || !Number.isFinite(b) || !Number.isFinite(epsilon) || epsilon < 0) {
+    return false
+  }
   return Math.abs(a - b) < epsilon
 }
 

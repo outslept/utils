@@ -45,5 +45,9 @@ export function approxEquals(a: number, b: number, epsilon = 1e-6): boolean {
 }
 
 export function fract(n: number): number {
+  if (!Number.isFinite(n)) {
+    return Number.NaN;
+  }
+  
   return n - Math.trunc(n)
 }

@@ -26,6 +26,9 @@ export function randFloat(min: number, max: number): number {
 }
 
 export function degToRad(degrees: number): number {
+  if (!Number.isFinite(degrees)) {
+    return Number.NaN
+  }
   return degrees * (Math.PI / 180)
 }
 

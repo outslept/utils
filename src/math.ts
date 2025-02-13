@@ -22,7 +22,7 @@ export function remap(n: number, inMin: number, inMax: number, outMin: number, o
 }
 
 export function roundTo(n: number, decimals = 0): number {
-  if (decimals < 0) {
+  if (decimals < 0 || Number.isInteger(decimals)) {
     throw new Error('decimals must be a non-negative integer')
   }
   const factor = 10 ** decimals

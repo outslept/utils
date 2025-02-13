@@ -1,4 +1,6 @@
 export * from './base'
 export * from './guards'
 export * from './is'
+export * from './object'
+export * from './time'
 export * from './vendor'

@@ -30,7 +30,12 @@ export function roundTo(n: number, decimals = 0): number {
 }
 
 export function randFloat(min: number, max: number): number {
-  return Math.random() * (max - min) + min
+  const [minVal, maxVal] = [Math.min(min, max), Math.max(min, max)]
+  if (!Number.isFinite(minVal) || !Number.isFinite(maxVal)) {
+    return Number.NaN
+  }
+
+  return Math.random() * (maxVal - minVal) + minVal
 }
 
 export function degToRad(degrees: number): number {
@@ -46,8 +51,8 @@ export function approxEquals(a: number, b: number, epsilon = 1e-6): boolean {
 
 export function fract(n: number): number {
   if (!Number.isFinite(n)) {
-    return Number.NaN;
+    return Number.NaN
   }
-  
+
   return n - Math.trunc(n)
 }

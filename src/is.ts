@@ -14,6 +14,7 @@ export function isBoolean(val: unknown): val is boolean {
   return typeof val === 'boolean'
 }
 
+// eslint-disable-next-line ts/no-unsafe-function-type
 export function isFunction<T extends Function>(val: unknown): val is T {
   return typeof val === 'function'
 }

@@ -129,19 +129,19 @@ If a maintainer asks you to "rebase" your PR, that means a lot of code has chang
 
 To update your forked repository, follow these steps:
 
-### Fetch upstream master and merge with your repo's main branch
+### Fetch upstream master and merge with your repo's master branch
 
 ```sh
 git fetch upstream
-git checkout main
-git merge upstream/main
+git checkout master
+git merge upstream/master
 ```
 
 #### If there were any new commits, rebase your development branch
 
 ```sh
 git checkout feature/branch-name
-git rebase main
+git rebase master
 ```
 
 If too much code has changed, you may need to resolve merge conflicts manually.

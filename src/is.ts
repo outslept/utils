@@ -1,5 +1,4 @@
-import type { Buffer } from 'node:buffer'
-
+/* eslint-disable node/prefer-global/buffer */
 import { toString } from './base'
 
 export function isDef<T = any>(val?: T): val is T {

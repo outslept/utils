@@ -1,0 +1,64 @@
+{
+  "name": "@outslept/utils",
+  "type": "module",
+  "version": "0.0.0",
+  "packageManager": "pnpm@9.15.3",
+  "description": "Collection of common JavaScript / TypeScript utils",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/outslept",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/outslept/outslept.git"
+  },
+  "bugs": {
+    "url": "https://github.com/outslept/outslept/issues"
+  },
+  "keywords": [
+    "utils"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "pnpm build -- --watch",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepublishOnly": "npm run build",
+    "release": "bumpp --commit --push --tag && npm publish",
+    "start": "esno src/index.ts",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^4.2.0",
+    "@rollup/plugin-alias": "^5.1.1",
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@types/node": "^22.13.2",
+    "@types/throttle-debounce": "^5.0.2",
+    "bumpp": "^10.0.3",
+    "eslint": "^9.20.1",
+    "eslint-plugin-format": "^1.0.1",
+    "esno": "^4.8.0",
+    "p-limit": "^6.2.0",
+    "rollup": "^4.34.6",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-esbuild": "^6.2.0",
+    "throttle-debounce": "^5.0.2",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0",
+    "vitest": "^3.0.5"
+  }
+}

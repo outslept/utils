@@ -17,6 +17,9 @@ export function remap(n: number, inMin: number, inMax: number, outMin: number, o
 }
 
 export function roundTo(n: number, decimals = 0): number {
+  if (decimals < 0) {
+    throw new Error('decimals must be a non-negative integer')
+  }
   const factor = 10 ** decimals
   return Math.round((n + Number.EPSILON) * factor) / factor
 }

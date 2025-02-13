@@ -10,7 +10,7 @@ export function lerp(min: number, max: number, t: number): number {
 
 export function remap(n: number, inMin: number, inMax: number, outMin: number, outMax: number): number {
   if (!Number.isFinite(n) || !Number.isFinite(inMin) || !Number.isFinite(inMax)
-    || +!Number.isFinite(outMin) || !Number.isFinite(outMax)) {
+    || !Number.isFinite(outMin) || !Number.isFinite(outMax)) {
     return Number.NaN
   }
 

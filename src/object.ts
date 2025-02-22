@@ -1,4 +1,4 @@
-import { isObject } from './is'
+import { isArray, isObject } from './is'
 
 export function objectMap<
   K extends PropertyKey,
@@ -64,4 +64,34 @@ export function hasOwnProperty<T>(obj: T, v: PropertyKey): boolean {
   }
 
   return Object.hasOwn(obj, v)
+}
+
+export function deepMerge<T extends object, S extends object>(target: T, source: S): T & S {
+  const output = { ...target } as any
+  for (const key of Object.keys(source)) {
+    const sourceValue = (source as any)[key]
+    if (isMergeableObject(sourceValue)) {
+      output[key] = key in target && isMergeableObject((target as any)[key])
+        ? deepMerge((target as any)[key], sourceValue)
+        : sourceValue
+    }
+    else {
+      output[key] = sourceValue
+    }
+  }
+  return output
+}
+
+export function deepClone<T>(obj: T): T {
+  if (!isObject(obj))
+    return obj
+  if (isArray(obj))
+    return obj.map(deepClone) as T
+
+  const clone = {} as T
+  for (const key of Object.keys(obj)) {
+    // @ts-expect-error -- ignore (FIX LATER)
+    clone[key] = deepClone(obj[key])
+  }
+  return clone
 }

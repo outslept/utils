@@ -39,6 +39,14 @@ export function uniq<T>(arr: T[], by?: (item: T) => unknown): T[] {
 export function chunk<T>(arr: T[], size: number): T[][] {
   return Array.from(
     { length: Math.ceil(arr.length / size) },
-    (_, i) => arr.slice(i * size, i *size + size)
+    (_, i) => arr.slice(i * size, i * size + size),
+  )
+}
+
+export function zip<T extends unknown[][]>(...arrays: T): { [K in keyof T]: T[K] extends (infer V)[] ? V : never }[] {
+  const maxLength = Math.max(...arrays.map(a => a.length))
+  return Array.from(
+    { length: maxLength },
+    (_, i) => arrays.map(a => a[i]) as any,
   )
 }

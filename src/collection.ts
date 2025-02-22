@@ -30,3 +30,15 @@ export function uniq<T>(arr: T[], by?: (item: T) => unknown): T[] {
     return true
   })
 }
+
+/**
+ * Creates arrayu chunked into groups of specified size
+ * @param arr - Target array
+ * @param size - Chunk size
+ */
+export function chunk<T>(arr: T[], size: number): T[][] {
+  return Array.from(
+    { length: Math.ceil(arr.length / size) },
+    (_, i) => arr.slice(i * size, i *size + size)
+  )
+}

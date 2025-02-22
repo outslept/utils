@@ -55,6 +55,11 @@ export function zip<T extends unknown[][]>(...arrays: T): { [K in keyof T]: T[K]
   )
 }
 
+/**
+ * Creates frequency map from array elements
+ * @param arr - Target array
+ * @param keyFn - Key generator function
+ */
 export function frequency<T>(arr: T[], keyFn: (item: T) => string = String): Record<string, number> {
   return arr.reduce((acc, item) => {
     const key = keyFn(item)

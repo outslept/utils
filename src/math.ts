@@ -59,3 +59,17 @@ export function fract(n: number): number {
 
   return n - Math.trunc(n)
 }
+
+export function precisionRound(number: number, precision: number): number {
+  const factor = 10 ** precision
+  return Math.round(number * factor) / factor
+}
+
+export function sum(...numbers: number[]): number {
+  return numbers.reduce((acc, n) => acc + n, 0);
+}
+
+export function average(...numbers: number[]): number {
+  if (numbers.length === 0) return Number.NaN;
+  return sum(...numbers) / numbers.length;
+}

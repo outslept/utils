@@ -54,3 +54,11 @@ export function zip<T extends unknown[][]>(...arrays: T): { [K in keyof T]: T[K]
     (_, i) => arrays.map(a => a[i]) as any,
   )
 }
+
+export function frequency<T>(arr: T[], keyFn: (item: T) => string = String): Record<string, number> {
+  return arr.reduce((acc, item) => {
+    const key = keyFn(item)
+    acc[key] = (acc[key] || 0) + 1
+    return acc
+  }, {} as Record<string, number>)
+}

@@ -66,10 +66,19 @@ export function precisionRound(number: number, precision: number): number {
 }
 
 export function sum(...numbers: number[]): number {
-  return numbers.reduce((acc, n) => acc + n, 0);
+  return numbers.reduce((acc, n) => acc + n, 0)
 }
 
 export function average(...numbers: number[]): number {
-  if (numbers.length === 0) return Number.NaN;
-  return sum(...numbers) / numbers.length;
+  if (numbers.length === 0)
+    return Number.NaN
+  return sum(...numbers) / numbers.length
+}
+
+export function median(...numbers: number[]): number {
+  if (numbers.length === 0)
+    return Number.NaN
+  const sorted = [...numbers].sort((a, b) => a - b)
+  const mid = Math.floor(sorted.length / 2)
+  return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2
 }

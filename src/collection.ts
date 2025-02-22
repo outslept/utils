@@ -1,3 +1,8 @@
+/**
+ * Groups array elements by key selector
+ * @param arr - Target array
+ * @param keySelector  - Key Selector function
+ */
 export function groupBy<T, K extends PropertyKey>(
   arr: T[],
   keySelector: (item: T) => K

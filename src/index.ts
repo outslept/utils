@@ -1,4 +1,5 @@
 export * from './base'
+export * from './collection'
 export * from './guards'
 export * from './is'
 export * from './object'

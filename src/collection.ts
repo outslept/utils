@@ -43,6 +43,10 @@ export function chunk<T>(arr: T[], size: number): T[][] {
   )
 }
 
+/**
+ * Zips multiple arrays into arrays of tuples
+ * @param arrays - Arrays to zip
+ */
 export function zip<T extends unknown[][]>(...arrays: T): { [K in keyof T]: T[K] extends (infer V)[] ? V : never }[] {
   const maxLength = Math.max(...arrays.map(a => a.length))
   return Array.from(

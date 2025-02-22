@@ -1,3 +1,4 @@
+import { getTypeName } from './base'
 import { isArray, isString } from './is'
 
 export function notNullish<T>(v: T | null | undefined): v is NonNullable<T> {
@@ -52,5 +53,15 @@ export function isTuple<T extends readonly ((v: unknown) => boolean)[]>(
 ): (v: unknown) => v is { [K in keyof T]: T[K] extends (v: unknown) => v is infer R ? R : never } {
   return (v: unknown): v is any => {
     return isArray(v) && v.length === guards.length && guards.every((guard, i) => guard(v[i]))
+  }
+}
+
+export function isInstanceOf<T>(constructor: new (...args: any[]) => T) {
+  return (value: unknown): value is T => value instanceof constructor
+}
+
+export function assertType<T>(value: unknown, guard: (v: unknown) => v is T): asserts value is T {
+  if (!guard(value)) {
+    throw new TypeError(`Expected ${getTypeName(value)} to satisfy type guard`)
   }
 }

@@ -117,3 +117,13 @@ export function assertType<T>(value: unknown, guard: (v: unknown) => v is T): as
     throw new TypeError(`Expected ${getTypeName(value)} to satisfy type guard`)
   }
 }
+
+/**
+ * Checks if value satisfies any of the provided type guards
+ * @param guards - Guards to check
+ */
+export function isUnion<T extends readonly ((v: unknown) => boolean)[]>(
+  ...guards: T
+): (v: unknown) => v is ReturnType<T[number]> {
+  return (v: unknown): v is any => guards.some(guard => guard(v))
+}

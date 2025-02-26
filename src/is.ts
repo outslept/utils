@@ -325,3 +325,11 @@ export function isURL(val: unknown): boolean {
 export function isPastDate(val: unknown): boolean {
   return isDate(val) && val < new Date()
 }
+
+/**
+ * Check if a value is a date in future
+ * @param val - Value to check
+ */
+export function isFutureDate(val: unknown): boolean {
+  return isDate(val) && val > new Date()
+}

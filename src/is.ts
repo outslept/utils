@@ -317,3 +317,11 @@ export function isURL(val: unknown): boolean {
     return false
   }
 }
+
+/**
+ * Check if a value is a date in the past
+ * @param val - Value to check
+ */
+export function isPastDate(val: unknown): boolean {
+  return isDate(val) && val < new Date()
+}

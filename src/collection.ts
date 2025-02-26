@@ -67,3 +67,14 @@ export function frequency<T>(arr: T[], keyFn: (item: T) => string = String): Rec
     return acc
   }, {} as Record<string, number>)
 }
+
+/**
+ * Flattens array recursively
+ * @param arr - Target array
+ */
+export function flattenDeep<T>(arr: any[]): T[] {
+  return arr.reduce(
+    (acc, val) => acc.concat(Array.isArray(val) ? flattenDeep(val) : [val]),
+    [] as T[],
+  )
+}

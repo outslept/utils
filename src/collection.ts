@@ -105,3 +105,11 @@ export function partition<T>(
     [[], []] as [T[], T[]],
   )
 }
+
+/**
+ * Creates an array of values from all arrays without duplicates
+ * @param arrays - Arrays to union
+ */
+export function union<T>(...arrays: T[][]): T[] {
+  return [...new Set(arrays.flat())]
+}

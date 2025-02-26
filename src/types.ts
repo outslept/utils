@@ -63,10 +63,14 @@ type BooleanToBinary<T> = T extends boolean
     ? { [K in keyof T]: BooleanToBinary<T[K]> }
     : T
 
+// Utility type to make specific properties optional
+type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
+
 export type {
   BooleanToBinary,
   CamelCaseKeys,
   DateToString,
   DeepReadonly,
   DeepRemoveMethods,
+  PartialBy
 }

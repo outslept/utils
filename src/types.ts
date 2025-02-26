@@ -64,7 +64,13 @@ type BooleanToBinary<T> = T extends boolean
     : T
 
 // Utility type to make specific properties optional
-type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
+type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
+
+// Utility type to extract only the methods of an object
+type Methods<T> = {
+  // eslint-disable-next-line ts/no-unsafe-function-type
+  [P in keyof T as T[P] extends Function ? P : never]: T[P];
+}
 
 export type {
   BooleanToBinary,
@@ -72,5 +78,6 @@ export type {
   DateToString,
   DeepReadonly,
   DeepRemoveMethods,
-  PartialBy
+  Methods,
+  PartialBy,
 }

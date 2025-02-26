@@ -72,6 +72,12 @@ type Methods<T> = {
   [P in keyof T as T[P] extends Function ? P : never]: T[P];
 }
 
+// Utility typeto make specific properties required
+type RequiredBy<T, K extends keyof T> = Omit<TemplateStringsArray, K> & Required<Pick<T, K>>
+
+// Utility type to make specific properties nullable
+type Nullable<T> = { [P in keyof T]: T[P] | null }
+
 export type {
   BooleanToBinary,
   CamelCaseKeys,
@@ -79,5 +85,7 @@ export type {
   DeepReadonly,
   DeepRemoveMethods,
   Methods,
+  Nullable,
   PartialBy,
+  RequiredBy,
 }

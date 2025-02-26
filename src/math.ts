@@ -82,3 +82,15 @@ export function median(...numbers: number[]): number {
   const mid = Math.floor(sorted.length / 2)
   return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2
 }
+
+/**
+ * A utility to normalize angle in radiands to the range [0, 2π]
+ * @param angle
+ */
+export function normalizeAngle(angle: number): number {
+  if (!Number.isFinite(angle)) {
+    return Number.NaN
+  }
+
+  return ((angle % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI)
+}

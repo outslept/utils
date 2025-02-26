@@ -85,5 +85,23 @@ export function flattenDeep<T>(arr: any[]): T[] {
  * @param size - Size of each group
  */
 export function take<T>(arr: T[], size: number): T[] {
-  return arr.slice(0, size);
+  return arr.slice(0, size)
+}
+
+/**
+ * Partitions array into two ararys based on predicate
+ * @param arr - Target array
+ * @param predicate - Predicate function
+ */
+export function partition<T>(
+  arr: T[],
+  predicate: (item: T) => boolean,
+): [T[], T[]] {
+  return arr.reduce(
+    (result, item) => {
+      result[predicate(item) ? 0 : 1].push(item)
+      return result
+    },
+    [[], []] as [T[], T[]],
+  )
 }

@@ -102,3 +102,13 @@ export function normalizeAngle(angle: number): number {
 
   return ((angle % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI)
 }
+
+export function stdDev(numbers: number[]): number {
+  if (numbers.length <= 1) {
+    return Number.NaN
+  }
+
+  const avg = average(...numbers)
+  const squaredDiffs = numbers.map(n => (n - avg) ** 2)
+  return Math.sqrt(sum(...squaredDiffs) / (numbers.length - 1))
+}

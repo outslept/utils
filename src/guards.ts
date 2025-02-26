@@ -127,3 +127,19 @@ export function isUnion<T extends readonly ((v: unknown) => boolean)[]>(
 ): (v: unknown) => v is ReturnType<T[number]> {
   return (v: unknown): v is any => guards.some(guard => guard(v))
 }
+
+/**
+ * Checks if a value is a literal
+ * @param expected - Expected
+ */
+export function isLiteral<T extends string | number | boolean | null | undefined>(expected: T) {
+  return (v: unknown): v is T => v === expected
+}
+
+/**
+ * Checks if a value is optional
+ * @param guard - Guard to check
+ */
+export function isOptional<T>(guard: (v: unknown) => v is T) {
+  return (v: unknown): v is T | undefined => v === undefined || guard(v);
+}

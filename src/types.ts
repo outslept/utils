@@ -78,12 +78,16 @@ type RequiredBy<T, K extends keyof T> = Omit<TemplateStringsArray, K> & Required
 // Utility type to make specific properties nullable
 type Nullable<T> = { [P in keyof T]: T[P] | null }
 
+// Utility type to flatten nested object types
+type Flatten<T> = { [K in keyof T]: T[K] }
+
 export type {
   BooleanToBinary,
   CamelCaseKeys,
   DateToString,
   DeepReadonly,
   DeepRemoveMethods,
+  Flatten,
   Methods,
   Nullable,
   PartialBy,

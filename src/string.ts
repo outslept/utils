@@ -44,3 +44,25 @@ export function kebabCase(str: string): string {
     .replace(/[\s_]+/g, '-')
     .toLowerCase()
 }
+
+/**
+ * Converts string to PascalCase
+ * @param str - Input string
+ */
+export function pascalCase(str: string): string {
+  return str
+    .replace(/[_-]+/g, ' ')
+    .replace(/\w\S*/g, word => word.charAt(0).toUpperCase() + word.substring(1).toLowerCase())
+    .replace(/\s+/g, '')
+}
+
+/**
+ * Converts string to snake_case
+ * @param str - Input string
+ */
+export function snakeCase(str: string): string {
+  return str
+    .replace(/([a-z])([A-Z])/g, '$1_$2')
+    .replace(/[\s-]+/g, '_')
+    .toLowerCase()
+}

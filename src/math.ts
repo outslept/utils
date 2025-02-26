@@ -83,6 +83,14 @@ export function median(...numbers: number[]): number {
   return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2
 }
 
+export function radToDeg(radians: number): number {
+  if (!Number.isFinite(radians)) {
+    return Number.NaN
+  }
+
+  return radians * (180 / Math.PI)
+}
+
 /**
  * A utility to normalize angle in radiands to the range [0, 2π]
  * @param angle

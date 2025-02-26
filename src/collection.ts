@@ -78,3 +78,12 @@ export function flattenDeep<T>(arr: any[]): T[] {
     [] as T[],
   )
 }
+
+/**
+ * Creates an array of elements split into groups by size
+ * @param arr - Target array
+ * @param size - Size of each group
+ */
+export function take<T>(arr: T[], size: number): T[] {
+  return arr.slice(0, size);
+}

@@ -114,12 +114,16 @@ export function stdDev(numbers: number[]): number {
 }
 
 export function gcd(a: number, b: number): number {
-  a = Math.abs(a);
-  b = Math.abs(b);
+  a = Math.abs(a)
+  b = Math.abs(b)
   while (b) {
-    const t = b;
-    b = a % b;
-    a = t;
+    const t = b
+    b = a % b
+    a = t
   }
-  return a;
+  return a
+}
+
+export function lcm(a: number, b: number): number {
+  return a * b / gcd(a, b)
 }

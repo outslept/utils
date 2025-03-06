@@ -112,3 +112,14 @@ export function stdDev(numbers: number[]): number {
   const squaredDiffs = numbers.map(n => (n - avg) ** 2)
   return Math.sqrt(sum(...squaredDiffs) / (numbers.length - 1))
 }
+
+export function gcd(a: number, b: number): number {
+  a = Math.abs(a);
+  b = Math.abs(b);
+  while (b) {
+    const t = b;
+    b = a % b;
+    a = t;
+  }
+  return a;
+}

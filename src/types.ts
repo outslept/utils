@@ -81,6 +81,10 @@ type Nullable<T> = { [P in keyof T]: T[P] | null }
 // Utility type to flatten nested object types
 type Flatten<T> = { [K in keyof T]: T[K] }
 
+export type DeepPartial<T> = T extends object
+  ? { [P in keyof T]?: DeepPartial<T[P]> }
+  : T
+
 export type {
   BooleanToBinary,
   CamelCaseKeys,

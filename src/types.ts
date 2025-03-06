@@ -85,6 +85,14 @@ export type DeepPartial<T> = T extends object
   ? { [P in keyof T]?: DeepPartial<T[P]> }
   : T
 
+export type DeepRequired<T> = T extends object ? { [ P in keyof T ]-?: DeepRequired<T[P]> } : T
+
+export type AnyFunction = (...args: any[]) => any
+
+export type UnwrapPromise<T> = T extends Promise<infer U> ? U : T
+
+export type Lookup<K extends PropertyKey, V> = Partial<Record<K, V>>
+
 export type {
   BooleanToBinary,
   CamelCaseKeys,

@@ -1,6 +1,6 @@
 import { sleep } from './time'
 
-export async function retry<T>(
+async function retry<T>(
   fn: () => Promise<T>,
   options: { attempts: number, delay: number, onError?: (error: Error, attempt: number) => void },
 ): Promise<T> {
@@ -22,7 +22,7 @@ export async function retry<T>(
   throw lastError!
 }
 
-export function withTimeout<T>(promise: Promise<T>, ms: number, errorMessage = 'Operation timed out'): Promise<T> {
+function withTimeout<T>(promise: Promise<T>, ms: number, errorMessage = 'Operation timed out'): Promise<T> {
   let timeoutId: NodeJS.Timeout
   const timeoutPromise = new Promise<never>((_, reject) => {
     timeoutId = setTimeout(() => reject(new Error(errorMessage)), ms)
@@ -34,7 +34,7 @@ export function withTimeout<T>(promise: Promise<T>, ms: number, errorMessage = '
   ])
 }
 
-export async function asyncSequential<T, R>(
+async function asyncSequential<T, R>(
   items: T[],
   fn: (item: T, index: number) => Promise<R>,
 ): Promise<R[]> {
@@ -45,7 +45,7 @@ export async function asyncSequential<T, R>(
   return results
 }
 
-export async function asyncPool<T, R>(
+async function asyncPool<T, R>(
   concurrency: number,
   items: T[],
   fn: (item: T, index: number) => Promise<R>,
@@ -66,4 +66,11 @@ export async function asyncPool<T, R>(
 
   await Promise.all(executors)
   return results
+}
+
+export {
+  asyncPool,
+  asyncSequential,
+  retry,
+  withTimeout,
 }

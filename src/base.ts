@@ -3,7 +3,7 @@
  * @param condition - Condition to assert
  * @param message - Error message
  */
-export function assert(condition: boolean, message: string): asserts condition {
+function assert(condition: boolean, message: string): asserts condition {
   if (!condition)
     throw new Error(message)
 }
@@ -12,13 +12,13 @@ export function assert(condition: boolean, message: string): asserts condition {
  * Returns string representation of value
  * @param v - Value to convert
  */
-export const toString = (v: any): string => Object.prototype.toString.call(v)
+const toString = (v: any): string => Object.prototype.toString.call(v)
 
 /**
  * Returns type name of value
  * @param v - Value to get type name of
  */
-export function getTypeName(v: any): string {
+function getTypeName(v: any): string {
   if (v === null)
     return 'null'
   const type = toString(v).slice(8, -1).toLowerCase()
@@ -28,4 +28,11 @@ export function getTypeName(v: any): string {
 /**
  * No-op function
  */
-export function noop(): void {}
+function noop(): void {}
+
+export {
+  assert,
+  getTypeName,
+  noop,
+  toString,
+}

@@ -4,7 +4,7 @@
  * @param maxLength - Maximum length including ellipsis
  * @param ellipsis - Ellipsis character(s)
  */
-export function truncate(str: string, maxLength: number, ellipsis = '...'): string {
+function truncate(str: string, maxLength: number, ellipsis = '...'): string {
   if (str.length <= maxLength)
     return str
   return str.slice(0, maxLength - ellipsis.length) + ellipsis
@@ -16,7 +16,7 @@ export function truncate(str: string, maxLength: number, ellipsis = '...'): stri
  * @param singular - Singular form
  * @param plural - Plural form (optional)
  */
-export function pluralize(count: number, singular: string, plural?: string): string {
+function pluralize(count: number, singular: string, plural?: string): string {
   if (count === 1)
     return `${count} ${singular}`
   return `${count} ${plural ?? `${singular}s`}`
@@ -26,7 +26,7 @@ export function pluralize(count: number, singular: string, plural?: string): str
  * Converts string to camelCase
  * @param str - Input string
  */
-export function camelCase(str: string): string {
+function camelCase(str: string): string {
   return str
     .replace(/[_-]+/g, ' ')
     .replace(/^\w|[A-Z]|\b\w/g, (word, index) =>
@@ -38,7 +38,7 @@ export function camelCase(str: string): string {
  * Converts string to kebab-case
  * @param str - Input string
  */
-export function kebabCase(str: string): string {
+function kebabCase(str: string): string {
   return str
     .replace(/([a-z])([A-Z])/g, '$1-$2')
     .replace(/[\s_]+/g, '-')
@@ -49,7 +49,7 @@ export function kebabCase(str: string): string {
  * Converts string to PascalCase
  * @param str - Input string
  */
-export function pascalCase(str: string): string {
+function pascalCase(str: string): string {
   return str
     .replace(/[_-]+/g, ' ')
     .replace(/\w\S*/g, word => word.charAt(0).toUpperCase() + word.substring(1).toLowerCase())
@@ -60,19 +60,30 @@ export function pascalCase(str: string): string {
  * Converts string to snake_case
  * @param str - Input string
  */
-export function snakeCase(str: string): string {
+function snakeCase(str: string): string {
   return str
     .replace(/([a-z])([A-Z])/g, '$1_$2')
     .replace(/[\s-]+/g, '_')
     .toLowerCase()
 }
 
-export function capitalize(str: string): string {
+function capitalize(str: string): string {
   if (!str)
     return str
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
-export function countWords(str: string): number {
+function countWords(str: string): number {
   return str.trim().split(/\s+/).length
+}
+
+export {
+  camelCase,
+  capitalize,
+  countWords,
+  kebabCase,
+  pascalCase,
+  pluralize,
+  snakeCase,
+  truncate,
 }

@@ -1,6 +1,6 @@
 import { isArray, isObject } from './is'
 
-export function objectMap<
+function objectMap<
   K extends PropertyKey,
   V,
   NK extends PropertyKey,
@@ -26,23 +26,23 @@ export function objectMap<
   }, {} as Record<NK, NV>)
 }
 
-export function isKeyOf<T extends object>(obj: T, k: keyof any): k is keyof T {
+function isKeyOf<T extends object>(obj: T, k: keyof any): k is keyof T {
   return k in obj
 }
 
-export function objectKeys<T extends object>(obj: T): Array<`${keyof T & (string | number | boolean | null | undefined)}`> {
+function objectKeys<T extends object>(obj: T): Array<`${keyof T & (string | number | boolean | null | undefined)}`> {
   return Object.keys(obj) as Array<`${keyof T & (string | number | boolean | null | undefined)}`>
 }
 
-export function objectEntries<T extends object>(obj: T): Array<[keyof T, T[keyof T]]> {
+function objectEntries<T extends object>(obj: T): Array<[keyof T, T[keyof T]]> {
   return Object.entries(obj) as Array<[keyof T, T[keyof T]]>
 }
 
-export function isMergeableObject(item: any): item is object {
+function isMergeableObject(item: any): item is object {
   return isObject(item) && !Array.isArray(item)
 }
 
-export function objectPick<O extends object, T extends keyof O>(obj: O, keys: T[], omitUndefined = false): Pick<O, T> {
+function objectPick<O extends object, T extends keyof O>(obj: O, keys: T[], omitUndefined = false): Pick<O, T> {
   return keys.reduce((n, k) => {
     if (k in obj) {
       if (!omitUndefined || obj[k] !== undefined)
@@ -52,13 +52,13 @@ export function objectPick<O extends object, T extends keyof O>(obj: O, keys: T[
   }, {} as Pick<O, T>)
 }
 
-export function clearUndefined<T extends object>(obj: T): T {
+function clearUndefined<T extends object>(obj: T): T {
   // @ts-expect-error -- ignore
   Object.keys(obj).forEach((key: string) => (obj[key] === undefined ? delete obj[key] : {}))
   return obj
 }
 
-export function hasOwnProperty<T>(obj: T, v: PropertyKey): boolean {
+function hasOwnProperty<T>(obj: T, v: PropertyKey): boolean {
   if (obj == null) {
     return false
   }
@@ -66,7 +66,7 @@ export function hasOwnProperty<T>(obj: T, v: PropertyKey): boolean {
   return Object.hasOwn(obj, v)
 }
 
-export function deepMerge<T extends object, S extends object>(target: T, source: S): T & S {
+function deepMerge<T extends object, S extends object>(target: T, source: S): T & S {
   const output = { ...target } as any
   for (const key of Object.keys(source)) {
     const sourceValue = (source as any)[key]
@@ -82,7 +82,7 @@ export function deepMerge<T extends object, S extends object>(target: T, source:
   return output
 }
 
-export function deepClone<T>(obj: T): T {
+function deepClone<T>(obj: T): T {
   if (!isObject(obj))
     return obj
   if (isArray(obj))
@@ -94,4 +94,17 @@ export function deepClone<T>(obj: T): T {
     clone[key] = deepClone(obj[key])
   }
   return clone
+}
+
+export {
+  clearUndefined,
+  deepClone,
+  deepMerge,
+  hasOwnProperty,
+  isKeyOf,
+  isMergeableObject,
+  objectEntries,
+  objectKeys,
+  objectMap,
+  objectPick,
 }

@@ -1,17 +1,17 @@
-export const timestamp = (): number => +Date.now()
+const timestamp = (): number => +Date.now()
 
-export const toSeconds = (ms: number): number => Math.floor(ms / 1000)
+const toSeconds = (ms: number): number => Math.floor(ms / 1000)
 
-export const toMilliseconds = (s: number): number => s * 1000
+const toMilliseconds = (s: number): number => s * 1000
 
-export const sleep = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms))
+const sleep = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms))
 
-export function createTimeElapsed(): () => number {
+function createTimeElapsed(): () => number {
   const start = timestamp()
   return () => timestamp() - start
 }
 
-export function formatDuration(ms: number, format: 'short' | 'long' = 'short'): string {
+function formatDuration(ms: number, format: 'short' | 'long' = 'short'): string {
   const timeUnits = [
     { unit: 'day', ms: 86400000, short: 'd' },
     { unit: 'hour', ms: 3600000, short: 'h' },
@@ -35,4 +35,13 @@ export function formatDuration(ms: number, format: 'short' | 'long' = 'short'): 
   }
 
   return parts.length > 0 ? parts.join(' ') : '0s'
+}
+
+export {
+  createTimeElapsed,
+  formatDuration,
+  sleep,
+  timestamp,
+  toMilliseconds,
+  toSeconds,
 }

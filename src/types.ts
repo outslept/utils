@@ -81,27 +81,32 @@ type Nullable<T> = { [P in keyof T]: T[P] | null }
 // Utility type to flatten nested object types
 type Flatten<T> = { [K in keyof T]: T[K] }
 
-export type DeepPartial<T> = T extends object
+type DeepPartial<T> = T extends object
   ? { [P in keyof T]?: DeepPartial<T[P]> }
   : T
 
-export type DeepRequired<T> = T extends object ? { [ P in keyof T ]-?: DeepRequired<T[P]> } : T
+type DeepRequired<T> = T extends object ? { [ P in keyof T ]-?: DeepRequired<T[P]> } : T
 
-export type AnyFunction = (...args: any[]) => any
+type AnyFunction = (...args: any[]) => any
 
-export type UnwrapPromise<T> = T extends Promise<infer U> ? U : T
+type UnwrapPromise<T> = T extends Promise<infer U> ? U : T
 
-export type Lookup<K extends PropertyKey, V> = Partial<Record<K, V>>
+type Lookup<K extends PropertyKey, V> = Partial<Record<K, V>>
 
 export type {
+  AnyFunction,
   BooleanToBinary,
   CamelCaseKeys,
   DateToString,
+  DeepPartial,
   DeepReadonly,
   DeepRemoveMethods,
+  DeepRequired,
   Flatten,
+  Lookup,
   Methods,
   Nullable,
   PartialBy,
   RequiredBy,
+  UnwrapPromise,
 }

@@ -1,5 +1,7 @@
+export * from './async'
 export * from './base'
 export * from './collection'
+export * from './fp'
 export * from './guards'
 export * from './is'
 export * from './object'

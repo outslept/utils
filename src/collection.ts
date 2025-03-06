@@ -3,7 +3,7 @@
  * @param arr - Target array
  * @param keySelector  - Key Selector function
  */
-export function groupBy<T, K extends PropertyKey>(
+function groupBy<T, K extends PropertyKey>(
   arr: T[],
   keySelector: (item: T) => K,
 ): Record<K, T[]> {
@@ -19,7 +19,7 @@ export function groupBy<T, K extends PropertyKey>(
  * @param arr - Target array
  * @param by - Key selector for complex objects
  */
-export function uniq<T>(arr: T[], by?: (item: T) => unknown): T[] {
+function uniq<T>(arr: T[], by?: (item: T) => unknown): T[] {
   const seen = new Set<unknown>()
 
   return arr.filter((item) => {
@@ -36,7 +36,7 @@ export function uniq<T>(arr: T[], by?: (item: T) => unknown): T[] {
  * @param arr - Target array
  * @param size - Chunk size
  */
-export function chunk<T>(arr: T[], size: number): T[][] {
+function chunk<T>(arr: T[], size: number): T[][] {
   return Array.from(
     { length: Math.ceil(arr.length / size) },
     (_, i) => arr.slice(i * size, i * size + size),
@@ -47,7 +47,7 @@ export function chunk<T>(arr: T[], size: number): T[][] {
  * Zips multiple arrays into arrays of tuples
  * @param arrays - Arrays to zip
  */
-export function zip<T extends unknown[][]>(...arrays: T): { [K in keyof T]: T[K] extends (infer V)[] ? V : never }[] {
+function zip<T extends unknown[][]>(...arrays: T): { [K in keyof T]: T[K] extends (infer V)[] ? V : never }[] {
   const maxLength = Math.max(...arrays.map(a => a.length))
   return Array.from(
     { length: maxLength },
@@ -60,7 +60,7 @@ export function zip<T extends unknown[][]>(...arrays: T): { [K in keyof T]: T[K]
  * @param arr - Target array
  * @param keyFn - Key generator function
  */
-export function frequency<T>(arr: T[], keyFn: (item: T) => string = String): Record<string, number> {
+function frequency<T>(arr: T[], keyFn: (item: T) => string = String): Record<string, number> {
   return arr.reduce((acc, item) => {
     const key = keyFn(item)
     acc[key] = (acc[key] || 0) + 1
@@ -72,7 +72,7 @@ export function frequency<T>(arr: T[], keyFn: (item: T) => string = String): Rec
  * Flattens array recursively
  * @param arr - Target array
  */
-export function flattenDeep<T>(arr: any[]): T[] {
+function flattenDeep<T>(arr: any[]): T[] {
   return arr.reduce(
     (acc, val) => acc.concat(Array.isArray(val) ? flattenDeep(val) : [val]),
     [] as T[],
@@ -84,7 +84,7 @@ export function flattenDeep<T>(arr: any[]): T[] {
  * @param arr - Target array
  * @param size - Size of each group
  */
-export function take<T>(arr: T[], size: number): T[] {
+function take<T>(arr: T[], size: number): T[] {
   return arr.slice(0, size)
 }
 
@@ -93,7 +93,7 @@ export function take<T>(arr: T[], size: number): T[] {
  * @param arr - Target array
  * @param predicate - Predicate function
  */
-export function partition<T>(
+function partition<T>(
   arr: T[],
   predicate: (item: T) => boolean,
 ): [T[], T[]] {
@@ -110,15 +110,28 @@ export function partition<T>(
  * Creates an array of values from all arrays without duplicates
  * @param arrays - Arrays to union
  */
-export function union<T>(...arrays: T[][]): T[] {
+function union<T>(...arrays: T[][]): T[] {
   return [...new Set(arrays.flat())]
 }
 
-export function shuffle<T>(array: T[]): T[] {
+function shuffle<T>(array: T[]): T[] {
   const result = [...array]
   for (let i = result.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [result[i], result[j]] = [result[j], result[i]]
   }
   return result
+}
+
+export {
+  chunk,
+  flattenDeep,
+  frequency,
+  groupBy,
+  partition,
+  shuffle,
+  take,
+  union,
+  uniq,
+  zip,
 }

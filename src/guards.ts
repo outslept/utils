@@ -5,7 +5,7 @@ import { isArray, isString } from './is'
  * Checks if value is not null or undefined
  * @param v - Value to check
  */
-export function notNullish<T>(v: T | null | undefined): v is NonNullable<T> {
+function notNullish<T>(v: T | null | undefined): v is NonNullable<T> {
   return v != null
 }
 
@@ -13,7 +13,7 @@ export function notNullish<T>(v: T | null | undefined): v is NonNullable<T> {
  * Checks if value is not null
  * @param v - Value to check
  */
-export function noNull<T>(v: T | null): v is Exclude<T, null> {
+function noNull<T>(v: T | null): v is Exclude<T, null> {
   return v !== null
 }
 
@@ -21,7 +21,7 @@ export function noNull<T>(v: T | null): v is Exclude<T, null> {
  * Checks if value is not undefined
  * @param v - Value to check
  */
-export function notUndefined<T>(v: T): v is Exclude<T, undefined> {
+function notUndefined<T>(v: T): v is Exclude<T, undefined> {
   return v !== undefined
 }
 
@@ -29,7 +29,7 @@ export function notUndefined<T>(v: T): v is Exclude<T, undefined> {
  * Checks if value is truthy
  * @param v - Value to check
  */
-export function isTruthy<T>(v: T): v is NonNullable<T> {
+function isTruthy<T>(v: T): v is NonNullable<T> {
   return Boolean(v)
 }
 
@@ -37,7 +37,7 @@ export function isTruthy<T>(v: T): v is NonNullable<T> {
  * Checks if value is non-empty string
  * @param v - Value to check
  */
-export function isNonEmptyString(v: unknown): v is string {
+function isNonEmptyString(v: unknown): v is string {
   return isString(v) && v.trim().length > 0
 }
 
@@ -45,7 +45,7 @@ export function isNonEmptyString(v: unknown): v is string {
  * Checks if value is non-empty array
  * @param v - Value to check
  */
-export function isNonEmptyArray<T>(v: unknown): v is [T, ...T[]] {
+function isNonEmptyArray<T>(v: unknown): v is [T, ...T[]] {
   return isArray(v) && v.length > 0
 }
 
@@ -53,7 +53,7 @@ export function isNonEmptyArray<T>(v: unknown): v is [T, ...T[]] {
  * Checks if value is array of specified type
  * @param guard - Guard function
  */
-export function isArrayOf<T>(guard: (v: unknown) => v is T) {
+function isArrayOf<T>(guard: (v: unknown) => v is T) {
   return (v: unknown): v is T[] => isArray(v) && v.every(guard)
 }
 
@@ -61,7 +61,7 @@ export function isArrayOf<T>(guard: (v: unknown) => v is T) {
  * Checks if value is record
  * @param v - Value to check
  */
-export function isRecord<K extends string | number | symbol = string, T = unknown>(
+function isRecord<K extends string | number | symbol = string, T = unknown>(
   v: unknown,
 ): v is Record<K, T> {
   return typeof v === 'object' && v !== null && !Array.isArray(v)
@@ -71,7 +71,7 @@ export function isRecord<K extends string | number | symbol = string, T = unknow
  * Checks if value has property
  * @param key - Property key
  */
-export function hasProperty<K extends string | number | symbol>(
+function hasProperty<K extends string | number | symbol>(
   key: K,
 ): (v: unknown) => v is { [P in K]: unknown } {
   return (v: unknown): v is { [P in K]: unknown } =>
@@ -82,7 +82,7 @@ export function hasProperty<K extends string | number | symbol>(
  * Checks if value is one of specified values
  * @param values - Values to check
  */
-export function isOneOf<T extends readonly unknown[]>(
+function isOneOf<T extends readonly unknown[]>(
   values: T,
 ): (v: unknown) => v is T[number] {
   return (v: unknown): v is T[number] => values.includes(v as T[number])
@@ -92,7 +92,7 @@ export function isOneOf<T extends readonly unknown[]>(
  * Checks if value is tuple of specified guards
  * @param guards - Guards to check
  */
-export function isTuple<T extends readonly ((v: unknown) => boolean)[]>(
+function isTuple<T extends readonly ((v: unknown) => boolean)[]>(
   guards: T,
 ): (v: unknown) => v is { [K in keyof T]: T[K] extends (v: unknown) => v is infer R ? R : never } {
   return (v: unknown): v is any => {
@@ -104,7 +104,7 @@ export function isTuple<T extends readonly ((v: unknown) => boolean)[]>(
  * Checks if value is instance of specified constructor
  * @param constructor - Constructor to check
  */
-export function isInstanceOf<T>(constructor: new (...args: any[]) => T) {
+function isInstanceOf<T>(constructor: new (...args: any[]) => T) {
   return (value: unknown): value is T => value instanceof constructor
 }
 
@@ -112,7 +112,7 @@ export function isInstanceOf<T>(constructor: new (...args: any[]) => T) {
  * Asserts value satisfies type guard
  * @param value - Value to assert
  */
-export function assertType<T>(value: unknown, guard: (v: unknown) => v is T): asserts value is T {
+function assertType<T>(value: unknown, guard: (v: unknown) => v is T): asserts value is T {
   if (!guard(value)) {
     throw new TypeError(`Expected ${getTypeName(value)} to satisfy type guard`)
   }
@@ -122,7 +122,7 @@ export function assertType<T>(value: unknown, guard: (v: unknown) => v is T): as
  * Checks if value satisfies any of the provided type guards
  * @param guards - Guards to check
  */
-export function isUnion<T extends readonly ((v: unknown) => boolean)[]>(
+function isUnion<T extends readonly ((v: unknown) => boolean)[]>(
   ...guards: T
 ): (v: unknown) => v is ReturnType<T[number]> {
   return (v: unknown): v is any => guards.some(guard => guard(v))
@@ -132,7 +132,7 @@ export function isUnion<T extends readonly ((v: unknown) => boolean)[]>(
  * Checks if a value is a literal
  * @param expected - Expected
  */
-export function isLiteral<T extends string | number | boolean | null | undefined>(expected: T) {
+function isLiteral<T extends string | number | boolean | null | undefined>(expected: T) {
   return (v: unknown): v is T => v === expected
 }
 
@@ -140,6 +140,25 @@ export function isLiteral<T extends string | number | boolean | null | undefined
  * Checks if a value is optional
  * @param guard - Guard to check
  */
-export function isOptional<T>(guard: (v: unknown) => v is T) {
-  return (v: unknown): v is T | undefined => v === undefined || guard(v);
+function isOptional<T>(guard: (v: unknown) => v is T) {
+  return (v: unknown): v is T | undefined => v === undefined || guard(v)
+}
+
+export {
+  assertType,
+  hasProperty,
+  isArrayOf,
+  isInstanceOf,
+  isLiteral,
+  isNonEmptyArray,
+  isNonEmptyString,
+  isOneOf,
+  isOptional,
+  isRecord,
+  isTruthy,
+  isTuple,
+  isUnion,
+  noNull,
+  notNullish,
+  notUndefined,
 }

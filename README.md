@@ -158,7 +158,3 @@ Simply copy the functions you need directly into your project. Each utility is s
 ## License
 
 MIT
-
-```
-
-```

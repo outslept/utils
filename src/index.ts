@@ -1,6 +1,6 @@
+export * from './array'
 export * from './async'
 export * from './base'
-export * from './array'
 export * from './fp'
 export * from './guards'
 export * from './is'

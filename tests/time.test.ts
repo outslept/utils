@@ -10,7 +10,7 @@ import {
 
 describe('timestamp', () => {
   it('returns the current timestamp in milliseconds', () => {
-    const mockNow = 1646735000000 
+    const mockNow = 1646735000000
     vi.spyOn(Date, 'now').mockImplementation(() => mockNow)
 
     expect(timestamp()).toBe(mockNow)

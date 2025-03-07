@@ -326,6 +326,7 @@ function lcm(a: number, b: number): number {
 export {
   approxEquals,
   average,
+  clamp,
   degToRad,
   fract,
   gcd,

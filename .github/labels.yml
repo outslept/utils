@@ -1,0 +1,104 @@
+# Priorities
+- name: 'priority: critical'
+  color: b60205
+  description: Requires immediate attention
+
+- name: 'priority: high'
+  color: d93f0b
+  description: High priority
+
+- name: 'priority: medium'
+  color: fbca04
+  description: Medium priority
+
+- name: 'priority: low'
+  color: 0e8a16
+  description: Low priority
+
+# Types
+- name: 'type: bug'
+  color: d73a4a
+  description: "Something isn't working as expected"
+
+- name: 'type: feature'
+  color: 0075ca
+  description: New feature request
+
+- name: 'type: enhancement'
+  color: a2eeef
+  description: Improvement of existing functionality
+
+- name: 'type: documentation'
+  color: 0075ca
+  description: Documentation improvements
+
+- name: 'type: question'
+  color: d876e3
+  description: Question about usage
+
+- name: 'type: refactor'
+  color: 6699cc
+  description: Code refactoring without changing functionality
+
+- name: 'type: test'
+  color: bfd4f2
+  description: Test-related changes
+
+- name: 'type: ci'
+  color: 4a92e0
+  description: CI/CD related changes
+
+# Status
+- name: 'status: needs-info'
+  color: d4c5f9
+  description: More information is needed
+
+- name: 'status: blocked'
+  color: e99695
+  description: Blocked by another issue
+
+- name: 'status: in-progress'
+  color: c5def5
+  description: Work in progress
+
+- name: 'status: stale'
+  color: d3d3d3
+  description: Inactive issue
+
+- name: 'status: duplicate'
+  color: cfd3d7
+  description: Duplicates another issue
+
+- name: 'status: wontfix'
+  color: ffffff
+  description: This will not be fixed
+
+# Scope
+- name: 'scope: core'
+  color: 006b75
+  description: Related to the core library
+
+- name: 'scope: types'
+  color: 006b75
+  description: Related to types
+
+- name: 'scope: docs'
+  color: 006b75
+  description: Related to documentation
+
+- name: 'scope: tests'
+  color: 006b75
+  description: Related to tests
+
+# Other
+- name: good first issue
+  color: 7057ff
+  description: Good issue for newcomers
+
+- name: help wanted
+  color: '008672'
+  description: Community help needed
+
+- name: dependencies
+  color: 0366d6
+  description: Dependency updates

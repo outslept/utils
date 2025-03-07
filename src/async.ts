@@ -18,10 +18,10 @@ import { sleep } from './time'
  *
  * @template T - Return type of the function
  * @param fn - Async function to retry
- * @param options - Configuration options:
- *   - attempts: Maximum number of attempts
- *   - delay: Milliseconds to wait between attempts
- *   - onError: Optional callback for error handling
+ * @param options - Configuration options
+ * @param options.attempts - Maximum number of attempts
+ * @param options.delay - Milliseconds to wait between attempts
+ * @param options.onError - Optional callback for error handling
  * @returns Promise resolving to the function's result
  * @throws Last error encountered if all attempts fail
  */
@@ -29,7 +29,8 @@ async function retry<T>(
   fn: () => Promise<T>,
   options: { attempts: number, delay: number, onError?: (error: Error, attempt: number) => void },
 ): Promise<T> {
-  let lastError: Error
+  let lastError: Error = new Error('Unknown error occurred')
+
   for (let attempt = 1; attempt <= options.attempts; attempt++) {
     try {
       return await fn()
@@ -44,7 +45,7 @@ async function retry<T>(
       }
     }
   }
-  throw lastError!
+  throw lastError
 }
 
 /**

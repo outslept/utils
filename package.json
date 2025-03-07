@@ -21,17 +21,28 @@
     "dist"
   ],
   "scripts": {
+    "clean": "git clean -fdx dist",
+    "prebuild": "pnpm clean",
     "build": "tsup",
     "dev": "tsup --watch",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "start": "esno src/index.ts",
-    "test": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "pnpm build && changeset publish"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.2.0",
+    "@changesets/changelog-git": "^0.2.1",
+    "@changesets/changelog-github": "^0.5.1",
+    "@changesets/cli": "^2.28.1",
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
     "@types/node": "^22.13.2",
     "@types/throttle-debounce": "^5.0.2",
     "@vitest/coverage-v8": "^3.0.8",
@@ -50,5 +61,18 @@
   },
   "nano-staged": {
     "*.{js,ts,tsx,vue,md}": "eslint --fix"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "subject-case": [
+        0
+      ],
+      "scope-case": [
+        0
+      ]
+    }
   }
 }

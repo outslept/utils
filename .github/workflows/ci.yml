@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - dev
-
   pull_request:
     branches:
       - dev
@@ -15,61 +14,54 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
+        with:
+          version: 9.15.3
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
+          cache: 'pnpm'
 
-      - name: Setup
-        run: npm i -g @antfu/ni
-
-      - name: Install
-        run: nci
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
-        run: nr lint
+        run: pnpm lint
 
   typecheck:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
+        with:
+          version: 9.15.3
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
+          cache: 'pnpm'
 
-      - name: Setup
-        run: npm i -g @antfu/ni
-
-      - name: Install
-        run: nci
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Typecheck
-        run: nr typecheck
+        run: pnpm typecheck
 
-  # test:
-  #   runs-on: ${{ matrix.os }}
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9.15.3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'pnpm'
 
-  #   strategy:
-  #     matrix:
-  #       node: [lts/*]
-  #       os: [ubuntu-latest]
-  #     fail-fast: false
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - uses: pnpm/action-setup@v3
-  #     - uses: actions/setup-node@v4
-  #       with:
-  #         node-version: ${{ matrix.node }}
+      - name: Build
+        run: pnpm build
 
-  #     - name: Setup
-  #       run: npm i -g @antfu/ni
-
-  #     - name: Install
-  #       run: nci
-
-  #     - name: Build
-  #       run: nr build
-
-  #     - name: Test
-  #       run: nr test
+      - name: Test
+        run: pnpm test

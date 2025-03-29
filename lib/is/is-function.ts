@@ -1,3 +1,4 @@
+/* eslint-disable ts/no-unsafe-function-type */
 /**
  * Checks if a value is a function.
  * @param value - Value to check

@@ -16,7 +16,7 @@ function isNumberLike(value: unknown): boolean {
   if (trimmed === '')
     return false
 
-  return !isNaN(Number(trimmed))
+  return !Number.isNaN(Number(trimmed))
 }
 
 export default isNumberLike

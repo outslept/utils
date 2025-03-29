@@ -1,3 +1,4 @@
+/* eslint-disable ts/no-unsafe-function-type */
 import getTag from '../../helpers/getTag'
 import isFunction from './is-function'
 

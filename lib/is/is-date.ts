@@ -11,7 +11,7 @@ function isDate(value: unknown): value is Date {
     return false
   }
 
-  return !isNaN((value as Date).getTime())
+  return !Number.isNaN((value as Date).getTime())
 }
 
 export default isDate

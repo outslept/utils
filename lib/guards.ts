@@ -1,5 +1,6 @@
 import { getTypeName } from './base'
-import { isArray, isString } from './is'
+import isArray from './is/is-array'
+import isString from './is/is-string'
 
 /**
  * Checks if a value is not null or undefined.

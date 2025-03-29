@@ -51,7 +51,6 @@
     "esno": "^4.8.0",
     "nano-staged": "^0.8.0",
     "simple-git-hooks": "^2.11.1",
-    "throttle-debounce": "^5.0.2",
     "tsup": "^8.4.0",
     "typescript": "^5.7.3",
     "vitest": "^3.0.5"

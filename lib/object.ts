@@ -1,4 +1,4 @@
-import { isArray, isObject } from './is'
+import isObject from './is/is-object'
 
 /**
  * Maps an object by applying a transformation function to each key-value pair.
@@ -198,36 +198,8 @@ function deepMerge<T extends object, S extends object>(target: T, source: S): T 
   return output
 }
 
-/**
- * Creates a deep copy of an object or array.
- * Handles nested objects and arrays recursively.
- *
- * @example
- * const original = { a: 1, b: { c: 2 } };
- * const clone = deepClone(original);
- * clone.b.c = 3; // Doesn't affect original.b.c
- *
- * @template T - Type of value to clone
- * @param obj - Value to clone
- * @returns Deep copy of the input value
- */
-function deepClone<T>(obj: T): T {
-  if (!isObject(obj))
-    return obj
-  if (isArray(obj))
-    return obj.map(deepClone) as T
-
-  const clone = {} as T
-  for (const key of Object.keys(obj)) {
-    // @ts-expect-error -- ignore (FIX LATER)
-    clone[key] = deepClone(obj[key])
-  }
-  return clone
-}
-
 export {
   clearUndefined,
-  deepClone,
   deepMerge,
   hasOwnProperty,
   isKeyOf,

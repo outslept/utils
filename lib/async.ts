@@ -1,4 +1,4 @@
-import { sleep } from './time'
+import { sleep } from './time/sleep'
 
 /**
  * Retries an asynchronous function multiple times with delay between attempts.

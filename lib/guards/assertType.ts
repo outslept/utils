@@ -1,4 +1,4 @@
-import { getTypeName } from "../base/getTypeName";
+import { getTypeName } from '../base/getTypeName'
 
 /**
  * Asserts that a value satisfies a type guard, throwing an error if it doesn't.

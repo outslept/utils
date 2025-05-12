@@ -1,4 +1,4 @@
-import isArray from "../is/is-array"
+import isArray from '../is/is-array'
 
 /**
  * Creates a type guard for tuples with elements matching specific type guards.

@@ -1,4 +1,4 @@
-import { toString } from "./toString"
+import { toString } from './toString'
 
 /**
  * Returns a normalized type name of a value.

@@ -1,4 +1,4 @@
-import isObject from "../is/is-object";
+import isObject from '../is/is-object'
 
 /**
  * Checks if a value is an object that can be merged.

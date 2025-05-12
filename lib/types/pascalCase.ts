@@ -10,4 +10,4 @@
  */
 export type PascalCase<S extends string> = S extends `${infer F}_${infer R}`
   ? `${Capitalize<F>}${PascalCase<R>}`
-  : Capitalize<S>;
+  : Capitalize<S>

@@ -1,4 +1,4 @@
-import { isRecord } from "./isRecord";
+import { isRecord } from './isRecord'
 
 /**
  * Creates a type guard for objects with a specific property.

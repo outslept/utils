@@ -1,4 +1,4 @@
-import isString from "../is/is-string";
+import isString from '../is/is-string'
 
 /**
  * Checks if a value is a non-empty string.

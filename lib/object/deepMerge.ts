@@ -1,4 +1,4 @@
-import { isMergeableObject } from "./isMergeableObject"
+import { isMergeableObject } from './isMergeableObject'
 
 /**
  * Recursively merges two objects.
